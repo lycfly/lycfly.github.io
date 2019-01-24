@@ -400,9 +400,10 @@
 </blockquote>
 <a id="more"></a>
 <h2 id="2-3-2-查准率、查全率与F1"><a href="#2-3-2-查准率、查全率与F1" class="headerlink" title="2.3.2 查准率、查全率与F1"></a>2.3.2 查准率、查全率与F1</h2><p>对于二分类问题，可将样例根据其真实类别与学习器预测类别的组合划分为真正例(true positive) 、假正例 (false positive) 、真反倒(true negative)、假反例 (false negative) 四种情形。用TP 、FP 、TN 、FN 表示。</p>
-<h2 id="真实情况-预测结果-正例-反例-正例-TP-真正例-FN-假反例-反例-FP-假正例-TN-真反例"><a href="#真实情况-预测结果-正例-反例-正例-TP-真正例-FN-假反例-反例-FP-假正例-TN-真反例" class="headerlink" title="  真实情况 预测结果   正例 反例   正例 TP(真正例) FN(假反例)   反例 FP(假正例) TN(真反例)  "></a><table> <tr> <th rowspan="2">真实情况</th> <th colspan="2">预测结果</th> </tr> <tr> <td>正例</td> <td>反例</td> </tr> <tr> <td>正例</td> <td>TP(真正例)</td> <td>FN(假反例)</td> </tr> <tr> <td>反例</td> <td>FP(假正例)</td> <td>TN(真反例)</td> </tr> </table></h2><p>查准率 P与查全率 R 分别定义：<br>$$<br>P=\frac{TP}{TP+FP}<br>$$</p>
-<p>$$<br>R = \frac{TP}{TP+FN}<br>$$</p>
-<p><img src="/2019/01/11/机器学习——性能评估/2019-01-19_201900.png" alt="P-R曲线"></p>
+<h2 id="真实情况-预测结果-正例-反例-正例-TP-真正例-FN-假反例-反例-FP-假正例-TN-真反例"><a href="#真实情况-预测结果-正例-反例-正例-TP-真正例-FN-假反例-反例-FP-假正例-TN-真反例" class="headerlink" title="  真实情况 预测结果   正例 反例   正例 TP(真正例) FN(假反例)   反例 FP(假正例) TN(真反例)  "></a><table> <tr> <th rowspan="2">真实情况</th> <th colspan="2">预测结果</th> </tr> <tr> <td>正例</td> <td>反例</td> </tr> <tr> <td>正例</td> <td>TP(真正例)</td> <td>FN(假反例)</td> </tr> <tr> <td>反例</td> <td>FP(假正例)</td> <td>TN(真反例)</td> </tr> </table></h2><p>查准率 P与查全率 R 分别定义：</p>
+<script type="math/tex; mode=display">
+P=\frac{TP}{TP+FP}</script><script type="math/tex; mode=display">
+R = \frac{TP}{TP+FN}</script><p><img src="/2019/01/11/机器学习——性能评估/2019-01-19_201900.png" alt="P-R曲线"></p>
 <ul>
 <li><p>若一个学 习器的 P-R 曲线被另一个学习器的曲线完全包住， 则可断言后者的性能优于前者。</p>
 </li>
@@ -410,7 +411,13 @@
 </li>
 <li><p>“平衡点”（Break-Event Point ,<strong>BEP</strong>）图中斜线就是一个比较模型优劣的度量方法。</p>
 </li>
-<li><p>F1度量（更常用）：<br>$$<br>F1 = \frac{2\times P\times R}{P+R}=\frac{2\times TP}{样例总数+TP-TN}=\frac{2\times TP}{FP+FN+2\times TP}<br>$$<br><em>F1</em> 是基于查准率与查全率的<strong>调和平均</strong> <em>(harinonicmean)</em>定义的:<br>$$<br>\frac{1}{F1}=\frac{1}{2}(\frac{1}{R}+\frac{1}{P})<br>$$<br> 然而在一些应用中，对查准率和查全率的重视程度有所不同.例如在商品推荐系统中，为了尽可能少打扰用户，更希望推荐内容确是用户感兴的，此时查准率更重要;而在逃犯信息检索系统中，更希望尽可能少漏掉逃犯，此时查全率更重要。<br>$F <em>\beta$ 是基于查准率与查全率的<strong>加权调和平均</strong>：<br>$$<br>F</em>\beta = \frac{(1+\beta^2)\times P \times R}{(\beta^2\times P)+R}<br>$$<br>$\beta&gt;0$度量查全与查准的相对重要性。$\beta&gt;1$时<strong>查全率</strong>有更大影响，$\beta&lt;1$<strong>查准率</strong>有更大影响。</p>
+<li><p>F1度量（更常用）：</p>
+<script type="math/tex; mode=display">
+F1 = \frac{2\times P\times R}{P+R}=\frac{2\times TP}{样例总数+TP-TN}=\frac{2\times TP}{FP+FN+2\times TP}</script><p><em>F1</em> 是基于查准率与查全率的<strong>调和平均</strong> <em>(harinonicmean)</em>定义的: </p>
+<script type="math/tex; mode=display">
+\frac{1}{F1}=\frac{1}{2}(\frac{1}{R}+\frac{1}{P})</script><p> 然而在一些应用中，对查准率和查全率的重视程度有所不同.例如在商品推荐系统中，为了尽可能少打扰用户，更希望推荐内容确是用户感兴的，此时查准率更重要;而在逃犯信息检索系统中，更希望尽可能少漏掉逃犯，此时查全率更重要。<br>$F _\beta$ 是基于查准率与查全率的<strong>加权调和平均</strong>：</p>
+<script type="math/tex; mode=display">
+F_\beta = \frac{(1+\beta^2)\times P \times R}{(\beta^2\times P)+R}</script><p>$\beta&gt;0$度量查全与查准的相对重要性。$\beta&gt;1$时<strong>查全率</strong>有更大影响，$\beta&lt;1$<strong>查准率</strong>有更大影响。</p>
 <p>有多个混淆矩阵时（比如多次测试，或者多分类任务中两两类别都有一个混淆矩阵）：</p>
 <p>（1）各混淆矩阵上分别计算出查准率和查全率，记为 (P1， R1 ) … (Pn ， Rn) ， 再计算平均值，这样就得到”宏查准率” (macro-P) 、 “宏查全率” (macro-R) ，以及相应的”宏F1” (macro-F1).</p>
 <p>​                            <img src="/2019/01/11/机器学习——性能评估/1548065402948.png" alt="1548065402948"></p>
@@ -435,9 +442,9 @@
 </li>
 <li><p>将分类阐值依次设为每个样例的预测值，即依次将每个样例划分为正例.设前一个标记点坐标为 (x， y) 。</p>
 <ul>
-<li><p>当前若为真正例，则对应标记点的坐标为 $$(x,y+\frac{1}{m^+})$$;当前若为假正例，则对应标记点的坐标为$$(x+\frac{1}{m^-},y)$$ ，然后用线段连接相邻点即可。</p>
+<li><p>当前若为真正例，则对应标记点的坐标为 <script type="math/tex">(x,y+\frac{1}{m^+})</script>;当前若为假正例，则对应标记点的坐标为<script type="math/tex">(x+\frac{1}{m^-},y)</script> ，然后用线段连接相邻点即可。</p>
 </li>
-<li><p>当出现a个正例与b个反例的预测值大小相等的情况下，则对应的坐标变为$$(x+\frac{b}{m^-},y+\frac{a}{m^+})$$，为一斜线段。</p>
+<li><p>当出现a个正例与b个反例的预测值大小相等的情况下，则对应的坐标变为<script type="math/tex">(x+\frac{b}{m^-},y+\frac{a}{m^+})</script>，为一斜线段。</p>
 </li>
 </ul>
 </li>
@@ -447,8 +454,7 @@
 <h3 id="AUC-Area-Under-ROC-Curve"><a href="#AUC-Area-Under-ROC-Curve" class="headerlink" title="AUC (Area Under ROC Curve)"></a>AUC (Area Under ROC Curve)</h3><p>AUC 可通过对ROC曲线下各部分的面积求和而得。</p>
 <ul>
 <li><p>估算公式为：$记ROC曲线由｛(x_1,y_1),(x_2,y_2),\dots(x_n,y_n)｝$连接而成。则:</p>
-<p>$$AUC=\frac{1}{2}\sum_{i=1}^{m-1}(x_{i+1}-x_i)(y_i+y_{i+1})$$</p>
-</li>
+<script type="math/tex; mode=display">AUC=\frac{1}{2}\sum_{i=1}^{m-1}(x_{i+1}-x_i)(y_i+y_{i+1})</script></li>
 </ul>
 <p>AUC 考虑的是样本预测的排序质量，因此它与排序误差有紧密联系.给定 $m^+$个正例和 $m^-$个反例.令 $D^+$ 和 $D^-$分别表示正、反例集合，则排序”损失” (loss)定义为:</p>
 <p><img src="/2019/01/11/机器学习——性能评估/1548072682669.png" alt="1548072682669"></p>
@@ -477,10 +483,10 @@
 <li><p>在非均等代价下， ROC 曲线不能直接反映出学习器的期望总体代价 需要引入”<strong>代价曲线</strong>“ (cost curve) .其x轴为P(+)cost, y轴为归一化cost:</p>
 <p><img src="/2019/01/11/机器学习——性能评估/1548075805818.png" alt="1548075805818"></p>
 </li>
-<li><p>其中（FNR = 1 - TPR ）。事实上，对于给定样本集（p确定）以及代价$cost_{01}与cost_{10}$，$P(+)<em>{cost}$可以写为$P(+)</em>{cost}=\frac{a}{a+b},其中a= p\times cost_{01},b=(1-p)\times cost_{10}$的形式。则有：</p>
+<li><p>其中（FNR = 1 - TPR ）。事实上，对于给定样本集（p确定）以及代价$cost_{01}与cost_{10}$，$P(+)_{cost}$可以写为$P(+)_{cost}=\frac{a}{a+b},其中a= p\times cost_{01},b=(1-p)\times cost_{10}$的形式。则有：</p>
 </li>
 </ul>
-<p>​        $$cost_{norm}=(FNR-FPR)\times P(+)_{cost} + FPR$$</p>
+<p>​        <script type="math/tex">cost_{norm}=(FNR-FPR)\times P(+)_{cost} + FPR</script></p>
 <p>​       因此代价曲线的斜率即为$FNR-FPR$。</p>
 <ul>
 <li><p>绘制: ROC 由线上每点对应了代价平面上的一条线段 </p>
